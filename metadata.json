@@ -1,0 +1,5 @@
+{
+  "name": "PomoPet: Gamified Focus",
+  "description": "A gamified Pomodoro timer where focusing earns you currency to collect, feed, and nurture virtual pets that live at the bottom of your screen.",
+  "requestFramePermissions": []
+}

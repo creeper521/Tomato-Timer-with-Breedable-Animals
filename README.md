@@ -1,11 +1,74 @@
-<div align="center">
+# PomoPet：游戏化专注计时器
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+PomoPet 是一款互动式网页应用，将番茄工作法与虚拟宠物养护相结合。专注于你的任务以赚取金币、解锁新宠物，并确保你的伙伴们吃饱喝足、心情愉悦。
 
-  <h1>Built with AI Studio</h2>
+## 🎮 功能特性
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+### 核心模块
+1.  **学习模块（专注）**：
+    - 标准番茄钟计时器（默认 25 分钟）。
+    - 完成计时后可获得金币奖励。
+    - 由当前活跃宠物生成的 AI 激励语录。
+2.  **休息模块**：
+    - **短休息**：5 分钟休息。
+    - **长休息**：15 分钟休息。
+    - AI 生成的身体活动建议（拉伸动作、眼部放松训练等）。
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+### 游戏化机制
+- **虚拟宠物**：宠物生活在屏幕底部，自由行走并互动。
+- **经济系统**：通过专注获得金币，用金币购买新宠物或喂养现有宠物。
+- **饥饿系统**：宠物会随时间逐渐饿肚子。若忽视照顾，其饥饿条将变红。
+- **宠物商店**：可解锁包括摩奇（猫）、巴斯特（狗）、零号机（机器人）在内的多种宠物。
 
-</div>
+### 🛠 测试 / 开发者模式（新增！）
+鉴于当前为测试版/内测版本，控制面板位于**右下角**（设置图标）。
+
+**功能说明：**
+1.  **调整时长**：可修改“专注”、“短休息”和“长休息”的默认时长。
+    - *提示*：将“专注”设为 `0.1` 分钟（6 秒），可快速测试“任务完成”流程及奖励机制。
+2.  **强制完成**：一键立即结束当前计时器。便于在无需等待的情况下测试 API 调用（Gemini）及金币累积功能。
+
+## 🚀 运行指南
+
+本项目基于 React + TypeScript + Tailwind CSS 构建。
+
+### 前提条件
+- 已安装 Node.js。
+- 需要 Google Gemini API 密钥（用于 AI 功能）。
+
+### 安装步骤
+1.  克隆代码仓库。
+2.  安装依赖包：
+    ```bash
+    npm install
+    ```
+3.  在项目根目录创建 `.env` 文件并填入 API 密钥：
+    ```
+    API_KEY=your_gemini_api_key_here
+    ```
+4.  启动本地开发服务器：
+    ```bash
+    npm start
+    ```
+
+## 🧩 项目结构
+
+- **App.tsx**：主应用逻辑、状态管理与布局控制。
+- **components/PetPlayground.tsx**：负责渲染并控制屏幕底部宠物的动画行为。
+- **components/Store.tsx**：宠物购买/装备的弹窗界面。
+- **components/DevControls.tsx**：开发者测试面板逻辑。
+- **services/geminiService.ts**：对接 Google Gemini API，实现文本生成功能。
+- **types.ts**：定义用户状态和宠物数据的 TypeScript 接口。
+
+## 🐛 故障排查
+
+**“休息模块按钮无法点击？”**
+- 早期版本中，“休息”按钮可能被其他 UI 层级遮挡。
+- **修复方法**：已提高模块切换器的 z-index，同时将“休息”按钮拆分为独立的“短休息”和“长休息”两个按钮，以提升操作清晰度。
+
+**“AI 提示语未显示？”**
+- 请确认环境变量中的 `API_KEY` 设置无误。
+- 查看浏览器控制台是否报出具体的 API 错误信息。
+
+---
+*基于 React 18、Tailwind CSS 与 Google Gemini 构建。*
